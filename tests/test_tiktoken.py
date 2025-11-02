@@ -20,6 +20,13 @@ def test_tiktoken_decode():
     tokenizer = tiktoken.get_encoding("gpt2")
 
 
-    encoded = tokenizer.decode([15496, 466, 345, 588, 8887, 30, 50256, 554, 262, 4252, 18250, 8812, 2114, 286, 262, 20562, 13])
+    decoded = tokenizer.decode([15496, 466, 345, 588, 8887, 30, 50256, 554, 262, 4252, 18250, 8812, 2114, 286, 262, 20562, 13])
 
-    assert encoded == "Hello do you like tea?<|endoftext|> In the sunlit terraces of the palace."
+    assert decoded == "Hello do you like tea?<|endoftext|> In the sunlit terraces of the palace."
+
+def test_uknown_word():
+    tokenizer = tiktoken.get_encoding("gpt2")
+    encoded = tokenizer.encode("Akwirw ier", allowed_special={"<|endoftext|>"})
+
+    assert encoded == [33901, 86, 343, 86, 220, 959]
+
