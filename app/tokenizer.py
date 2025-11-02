@@ -1,5 +1,10 @@
+from importlib.metadata import version
+import tiktoken
+
 import re
 from typing import List
+
+
 
 ###
 # Functions
@@ -56,3 +61,4 @@ class SimpleTokenizerV2:
         text =  " ".join(self.to_decode[id] for id in ids)
         result = re.sub(r'\s+([,.?!"()\'])', r'\1', text)
         return result
+
