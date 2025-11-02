@@ -40,7 +40,7 @@ case $1 in
         uv run $2
         ;;
     rt)
-        uv run pytest -vvs $2
+        uv run pytest -vvs tests 
         ;;
     *)
         log "Invalid option. Please choose 1, 2, or 3."

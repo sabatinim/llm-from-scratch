@@ -1,0 +1,38 @@
+import re
+from app.tokenizer import tokenize, read_dataset
+
+###
+# Tests
+###
+
+# Not considering whitespaces and punctuation
+def test_simple_re():
+    text = "Hello, world. This, is a test"
+    result = re.split(r'(\s)', text)
+    assert result == ['Hello,', ' ', 'world.', ' ',
+                      'This,', ' ', 'is', ' ', 'a', ' ', 'test']
+
+# Here remove whitespaces
+
+
+def test_white_spaces_re():
+    text = "Hello, world. This, is a test"
+    result = re.split(r'([,.] | \s)', text)
+    result = [r.strip() for r in result if r.strip()]
+    assert result == ['Hello', ',', 'world', '.', 'This', ',', 'is a test']
+
+# Final tokenizer
+
+
+def test_final_tokenizer():
+    text = "Hello, world. This--, is a test"
+    result = tokenize(text)
+    assert result == ['Hello', ',', 'world', '.',
+                      'This', '--', ',', 'is', 'a', 'test']
+
+
+def test_count_token():
+    text = read_dataset()
+    result = tokenize(text)
+    print(result[:100])
+    assert len(result) == 4690
