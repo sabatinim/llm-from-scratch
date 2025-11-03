@@ -62,3 +62,12 @@ class SimpleTokenizerV2:
         result = re.sub(r'\s+([,.?!"()\'])', r'\1', text)
         return result
 
+class SimpleTokenizerV3:
+    def __init__(self):
+        self.tokenizer = tiktoken.get_encoding("gpt2")
+    
+    def encode(self, text: str) -> List[int]:
+        return self.tokenizer.encode(text, allowed_special={"<|endoftext|>"})
+    
+    def decode(self, ids: List[int])->str:
+        return self.tokenizer.decode(ids)
