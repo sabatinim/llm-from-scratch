@@ -40,7 +40,9 @@ case $1 in
         uv run $2
         ;;
     rt)
-        uv run pytest -vvs tests 
+        DEFAULT_PATH="tests"
+        FILE_PATH="${2:-$DEFAULT_PATH}"
+        uv run pytest -vvs $FILE_PATH 
         ;;
     *)
         log "Invalid option. Please choose 1, 2, or 3."

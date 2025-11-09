@@ -18,14 +18,14 @@ def test_sliding_window_approach():
       
 def test_data_loader():
     data_loader = create_dataloader(read_dataset(), 
-                                    batch_size=1,
+                                    batch_size=8,
                                     max_length=4,
-                                    stride=1, 
+                                    stride=4, 
                                     shuffle=False)
     iter_data_loader = iter(data_loader)
     batch_input, batch_target = next(iter_data_loader)
     print("")
     print(batch_input) 
     print(batch_target)
-    assert len(data_loader) == 5141
+    assert len(data_loader) == 160
    
